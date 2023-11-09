@@ -2,6 +2,7 @@
 //name them in capital letters so you know they're constant
 //and their values won't change (be assigned new values)
 //mind is software
+//mind is software
 color GREEN = color(0, 0, 0);
 color DARK_GREEN = color(0, 120, 50);
 color BLUE = color(42, 155, 245);
