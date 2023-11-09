@@ -1,4 +1,5 @@
 //this is a class for making cans of pop objects
+//eeeeeee
 class Can {
   float xPosition; //the position of our can in x
   float yPosition; //and y
