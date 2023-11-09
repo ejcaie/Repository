@@ -3,7 +3,7 @@
 //and their values won't change (be assigned new values)
 //mind is software
 <<<<<<< HEAD
-//bacon bacon bacon
+//life is a lie
 =======
 //the end is never the end is never the end is never the end is never the end
 >>>>>>> H
