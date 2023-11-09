@@ -1,0 +1,65 @@
+VENDING MACHINE PSEUDOCODE:
+
+declare a bunch of variables
+- some colors so we can just say RED or BLUE or whatever to color buttons and cans of pop
+
+declare some buttons
+- one button for each color of pop in the vending machine
+- one more button to refill the vending machine (to reset the game)
+
+declare some cans of pop
+- we're going to need one Can object instance for each can we can spawn, so that when we vend the can (instantiate the object) we have this variable to address the can each draw frame to tell it to move and draw, and destroy it when it's left the screen.
+
+declare some timer variables
+- to get the shake effect to trigger vending all remaining cans after a pause we'll need a timer
+
+declare vending machine position variables
+- x and y position which all the shapes will be drawn relative to
+- and also an xOffset and yOffset which we can randomise to shake the vending machine
+
+SETUP:
+- setup the canvas size
+- instantiate the button objects so we can use them in draw and mousePressed
+we're not going to instantiate the can objects until they're vended, that way we won't be trying to move cans that are off the screen/not vended yet
+
+DRAW:
+- refresh the background
+- draw whatever scenery etc
+- draw the vending machine cabinet
+- draw the stock in the vending machine
+	- start drawing from the back of the stock, we want to draw stock for each can that hasn't been instantiated...to do this we:
+		- check if the last can has been instantiated
+			- if not, draw it
+		- check if the next can has been instantiated
+			- if not, draw it
+		...
+		- check if the first can has been instantiated
+			- if not, draw it
+	- and we have to use if-statements for each, not one big if-else-if-else-if because we want all tests which evaluate true to execute, not just the first to evaluate true !
+- draw the glass window of the vending machine over the stock
+- draw the buttons
+	- we want to set the color based on whether there is stock left of this color can (to set whether the button is enabled and will respond to mouse over and clicks, or disabled). If any of the can objects this button can spawn are null that should enable the button, but if all of the can objects this button can spawn have been instantiated then we want to disable the button.
+- list each can object and check if it's been instantiated yet
+	- if it has, call it's update function to move it
+	- draw it
+	- check if it's now off the screen, if so destroy the object
+- check if the timer is finished (timer boolean), if it has empty the vending machine:
+	- list each can object and check if it's been instantiated yet
+		- if it's null, instantiate it now!
+
+MOUSE PRESSED:
+- check each button: if the mouse is over it
+	- list each can object it can spawn and test if it's null
+		- if it is, instantiate a new can object
+		- else if the next one is null, instantiate a new can object
+		- (else do nothing; no stock left to vend from the machine)
+- check the refill button: if the mouse is over it
+	- reset the game by setting all the can objects to null
+
+KEY PRESSED:
+- shake the vending machine by adding some random values to xOffset and yOffset
+- increment the timer variable
+- if the timer variable is bigger than the target time, set the timer boolean to true (when this boolean is true, stuff happens in the check timer code in DRAW)
+
+KEY RELEASED:
+- reset the timer boolean, timer variable, and pick a new random target value
