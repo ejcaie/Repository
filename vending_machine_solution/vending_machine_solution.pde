@@ -3,7 +3,8 @@
 //and their values won't change (be assigned new values)
 //mind is software
 <<<<<<< HEAD
-//bacon bacon bacon
+//me when
+//me when the
 =======
 //the end is never the end is never the end is never the end is never the end
 >>>>>>> H
